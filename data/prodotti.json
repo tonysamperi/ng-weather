@@ -1,0 +1,360 @@
+{
+  "status": {
+    "status": true,
+    "msg": "List loaded"
+  },
+  "data": {
+    "products": [
+  {
+    "id": 1,
+    "name": "Prodotto 1",
+    "cat": "B",
+    "param3": 0.07,
+    "nationality": "Illinois"
+  },
+  {
+    "id": 2,
+    "name": "Prodotto 2",
+    "cat": "D",
+    "param3": 0.48,
+    "nationality": "Alaska"
+  },
+  {
+    "id": 3,
+    "name": "Prodotto 3",
+    "cat": "E",
+    "param3": 0.47,
+    "nationality": "Ohio"
+  },
+  {
+    "id": 4,
+    "name": "Prodotto 4",
+    "cat": "D",
+    "param3": 0.36,
+    "nationality": "Oregon"
+  },
+  {
+    "id": 5,
+    "name": "Prodotto 5",
+    "cat": "A",
+    "param3": 0.14,
+    "nationality": "New York"
+  },
+  {
+    "id": 6,
+    "name": "Prodotto 6",
+    "cat": "B",
+    "param3": 0.17,
+    "nationality": "Colorado"
+  },
+  {
+    "id": 7,
+    "name": "Prodotto 7",
+    "cat": "F",
+    "param3": 0.29,
+    "nationality": "Alaska"
+  },
+  {
+    "id": 8,
+    "name": "Prodotto 8",
+    "cat": "F",
+    "param3": 0,
+    "nationality": "Illinois"
+  },
+  {
+    "id": 9,
+    "name": "Prodotto 9",
+    "cat": "F",
+    "param3": 0.12,
+    "nationality": "Colorado"
+  },
+  {
+    "id": 10,
+    "name": "Prodotto 10",
+    "cat": "D",
+    "param3": 0.27,
+    "nationality": "Michigan"
+  },
+  {
+    "id": 11,
+    "name": "Prodotto 11",
+    "cat": "A",
+    "param3": 0.33,
+    "nationality": "Utah"
+  },
+  {
+    "id": 12,
+    "name": "Prodotto 12",
+    "cat": "D",
+    "param3": 0.01,
+    "nationality": "Georgia"
+  },
+  {
+    "id": 13,
+    "name": "Prodotto 13",
+    "cat": "A",
+    "param3": 0.4,
+    "nationality": "Indiana"
+  },
+  {
+    "id": 14,
+    "name": "Prodotto 14",
+    "cat": "A",
+    "param3": 0.2,
+    "nationality": "Alaska"
+  },
+  {
+    "id": 15,
+    "name": "Prodotto 15",
+    "cat": "D",
+    "param3": 0.25,
+    "nationality": "New York"
+  },
+  {
+    "id": 16,
+    "name": "Prodotto 16",
+    "cat": "A",
+    "param3": 0.33,
+    "nationality": "Illinois"
+  },
+  {
+    "id": 17,
+    "name": "Prodotto 17",
+    "cat": "B",
+    "param3": 0.02,
+    "nationality": "Iowa"
+  },
+  {
+    "id": 18,
+    "name": "Prodotto 18",
+    "cat": "B",
+    "param3": 0.21,
+    "nationality": "Georgia"
+  },
+  {
+    "id": 19,
+    "name": "Prodotto 19",
+    "cat": "C",
+    "param3": 0.37,
+    "nationality": "Montana"
+  },
+  {
+    "id": 20,
+    "name": "Prodotto 20",
+    "cat": "E",
+    "param3": 0.07,
+    "nationality": "New York"
+  },
+  {
+    "id": 21,
+    "name": "Prodotto 21",
+    "cat": "E",
+    "param3": 0.19,
+    "nationality": "Georgia"
+  },
+  {
+    "id": 22,
+    "name": "Prodotto 22",
+    "cat": "E",
+    "param3": 0.1,
+    "nationality": "Texas"
+  },
+  {
+    "id": 23,
+    "name": "Prodotto 23",
+    "cat": "D",
+    "param3": 0.25,
+    "nationality": "Missouri"
+  },
+  {
+    "id": 24,
+    "name": "Prodotto 24",
+    "cat": "B",
+    "param3": 0.5,
+    "nationality": "Alaska"
+  },
+  {
+    "id": 25,
+    "name": "Prodotto 25",
+    "cat": "F",
+    "param3": 0.2,
+    "nationality": "Illinois"
+  },
+  {
+    "id": 26,
+    "name": "Prodotto 26",
+    "cat": "A",
+    "param3": 0.38,
+    "nationality": "Ohio"
+  },
+  {
+    "id": 27,
+    "name": "Prodotto 27",
+    "cat": "B",
+    "param3": 0.31,
+    "nationality": "Georgia"
+  },
+  {
+    "id": 28,
+    "name": "Prodotto 28",
+    "cat": "C",
+    "param3": 0.15,
+    "nationality": "Texas"
+  },
+  {
+    "id": 29,
+    "name": "Prodotto 29",
+    "cat": "D",
+    "param3": 0.01,
+    "nationality": "Louisiana"
+  },
+  {
+    "id": 30,
+    "name": "Prodotto 30",
+    "cat": "B",
+    "param3": 0.22,
+    "nationality": "Ohio"
+  },
+  {
+    "id": 31,
+    "name": "Prodotto 31",
+    "cat": "D",
+    "param3": 0.33,
+    "nationality": "Texas"
+  },
+  {
+    "id": 32,
+    "name": "Prodotto 32",
+    "cat": "A",
+    "param3": 0.02,
+    "nationality": "Illinois"
+  },
+  {
+    "id": 33,
+    "name": "Prodotto 33",
+    "cat": "F",
+    "param3": 0.27,
+    "nationality": "Ohio"
+  },
+  {
+    "id": 34,
+    "name": "Prodotto 34",
+    "cat": "B",
+    "param3": 0.11,
+    "nationality": "Texas"
+  },
+  {
+    "id": 35,
+    "name": "Prodotto 35",
+    "cat": "F",
+    "param3": 0.15,
+    "nationality": "New York"
+  },
+  {
+    "id": 36,
+    "name": "Prodotto 36",
+    "cat": "C",
+    "param3": 0.41,
+    "nationality": "Ohio"
+  },
+  {
+    "id": 37,
+    "name": "Prodotto 37",
+    "cat": "A",
+    "param3": 0.21,
+    "nationality": "Texas"
+  },
+  {
+    "id": 38,
+    "name": "Prodotto 38",
+    "cat": "F",
+    "param3": 0.05,
+    "nationality": "Illinois"
+  },
+  {
+    "id": 39,
+    "name": "Prodotto 39",
+    "cat": "D",
+    "param3": 0.13,
+    "nationality": "New York"
+  },
+  {
+    "id": 40,
+    "name": "Prodotto 40",
+    "cat": "F",
+    "param3": 0.09,
+    "nationality": "Texas"
+  },
+  {
+    "id": 41,
+    "name": "Prodotto 41",
+    "cat": "D",
+    "param3": 0.4,
+    "nationality": "Hawaii"
+  },
+  {
+    "id": 42,
+    "name": "Prodotto 42",
+    "cat": "A",
+    "param3": 0.18,
+    "nationality": "Alaska"
+  },
+  {
+    "id": 43,
+    "name": "Prodotto 43",
+    "cat": "A",
+    "param3": 0.5,
+    "nationality": "Florida"
+  },
+  {
+    "id": 44,
+    "name": "Prodotto 44",
+    "cat": "E",
+    "param3": 0.48,
+    "nationality": "Illinois"
+  },
+  {
+    "id": 45,
+    "name": "Prodotto 45",
+    "cat": "D",
+    "param3": 0.33,
+    "nationality": "Texas"
+  },
+  {
+    "id": 46,
+    "name": "Prodotto 46",
+    "cat": "E",
+    "param3": 0.01,
+    "nationality": "Florida"
+  },
+  {
+    "id": 47,
+    "name": "Prodotto 47",
+    "cat": "C",
+    "param3": 0.21,
+    "nationality": "New York"
+  },
+  {
+    "id": 48,
+    "name": "Prodotto 48",
+    "cat": "F",
+    "param3": 0.18,
+    "nationality": "Ohio"
+  },
+  {
+    "id": 49,
+    "name": "Prodotto 49",
+    "cat": "F",
+    "param3": 0.44,
+    "nationality": "Florida"
+  },
+  {
+    "id": 50,
+    "name": "Prodotto 50",
+    "cat": "F",
+    "param3": 0.27,
+    "nationality": "Vermont"
+  }
+]
+  }
+}

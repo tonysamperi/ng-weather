@@ -1,0 +1,14 @@
+﻿[
+  '{{repeat(50)}}',
+    {
+      ISIN: '{{index(123456)}}',
+      nome: "Prodotto {{index(1)}}",
+      classe: '{{random("A","B","C","D","E","F")}}',
+      assoggettazione: "pippo",
+      proventi: "pluto",
+      rischioRendimento: '{{floating(0,1,2)}}',
+      areaGeografica: '{{state()}}',
+      Gestori: '{{company()}}',
+      StelleMorningStar: '{{random(0,1,2,3,4,5)}}'
+    }
+]
