@@ -4,7 +4,6 @@ angular.module("ngWeather", [])
 		restrict: 'A',
 		scope: false,
 		link: function (scope, element, attrs) {
-			scope.isLoading = true;
 			var loadingLayer = angular.element('<div class="ngw-spinner">'
 				+ '<img src="./img/ajax-loader.gif" />'
 				+ '</div>');
@@ -17,6 +16,7 @@ angular.module("ngWeather", [])
 })
 .directive("ngWeather", function(){
 	var linkFn = function(scope, el, attrs, ctrl){
+		scope.isLoading = true;
 		if(!!attrs.city && !!attrs.appId)
 			scope.getTemp(attrs.city, attrs.appId);
 		else
@@ -25,12 +25,12 @@ angular.module("ngWeather", [])
 
 	return {
 		restrict: "E",
+		replace: true,
 		//require: "^city",
 		scope: { city: '@', appId: '@'},
 		controller: ["$http", "$scope", function($http, $scope){
 			var apiUrl = "http://api.openweathermap.org/data/2.5/weather";
 			var params = "mode=json&units=metric&cnt=7&callback=JSON_CALLBACK";
-
 			$scope.getTemp = function(city, appId){
 				console.info("Getting weather for: "+city);
 				console.info("APP ID: "+appId);
@@ -45,20 +45,41 @@ angular.module("ngWeather", [])
 					$scope.temp = parseInt(response.main.temp);
 					$scope.isLoading = false;
 				}, function(){
+					$scope.isLoading = false;
+					$scope.isError = true;
+					$scope.errorMessage = "Data can't be retrieved.";
 					console.error("ERROR RETRIEVING WEATHER");
 				});
+			};
+
+			$scope.retry = function(){
+				$scope.isError = false;
+				$scope.isLoading = true;
+				if(!!$scope.city && $scope.appId)
+					$scope.getTemp($scope.city, $scope.appId);
+				else{
+					$scope.isLoading = false;
+					$scope.isError = true;
+					$scope.errorMessage = "There are some errors in your config!";
+				}
 			};
 		}],
 		link: linkFn,
 		template: '<div class="ngw-container ngw-row {{weather}}" ngw-spinner="isLoading">\
+		<div ng-if="!isError">\
 		<div class="ngw-col">\
 		<div class="ngw-icon"><i class="owf owf-{{weatherCode}}" aria-label="{{weather}}"></i></div>\
 		</div>\
 		<div class="ngw-col">\
-		<div class="ngw-temp"><span ng-bind="temp"></span>&nbsp;<span>°C</span></div>\
+		<div class="ngw-temp"><span ng-bind="temp || \'-\'"></span>&nbsp;<span>°C</span></div>\
 		<div class="ngw-location">\
 		<i class="glyphicon glyphicon-pushpin" aria-label="Location"></i><span ng-bind="city"></span>\
 		</div>\
+		</div>\
+		</div>\
+		<div class="ngw-col" ng-if="isError">\
+		<span ng-bind="errorMessage"></span>\
+		<span class="glyphicon glyphicon-refresh" ng-click="retry()"></span>\
 		</div>\
 		<div class="ngw-clearfix">\
 		</div>\
