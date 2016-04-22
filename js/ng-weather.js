@@ -28,9 +28,14 @@ angular.module("ngWeather", [])
 		replace: true,
 		//require: "^city",
 		scope: { city: '@', appId: '@'},
-		controller: ["$http", "$scope", function($http, $scope){
+		controller: ["$http", "$scope", "$locale", function($http, $scope,$locale){
+			console.log("%c %s", "color:orange; background:blue; font-size: 16pt", "LOCALE");
+			console.debug($locale);
+			var locale = $locale.id;
+			var units = !!$locale.id && $locale.id.indexOf("en")>-1 ? "imperial" : "metric"
+			$scope.unit = units == "metric" ? "°C" : "°F";
 			var apiUrl = "http://api.openweathermap.org/data/2.5/weather";
-			var params = "mode=json&units=metric&cnt=7&callback=JSON_CALLBACK";
+			var params = "mode=json&units="+units+"&cnt=7&callback=JSON_CALLBACK";
 			$scope.getTemp = function(city, appId){
 				console.info("Getting weather for: "+city);
 				console.info("APP ID: "+appId);
@@ -52,7 +57,7 @@ angular.module("ngWeather", [])
 				});
 			};
 
-			$scope.retry = function(){
+			$scope.reload = function(){
 				$scope.isError = false;
 				$scope.isLoading = true;
 				if(!!$scope.city && $scope.appId)
@@ -66,12 +71,13 @@ angular.module("ngWeather", [])
 		}],
 		link: linkFn,
 		template: '<div class="ngw-container ngw-row {{weather}}" ngw-spinner="isLoading">\
+		<span class="glyphicon glyphicon-refresh ngw-reload" ng-click="reload()"></span>\
 		<div ng-if="!isError">\
 		<div class="ngw-col">\
 		<div class="ngw-icon"><i class="owf owf-{{weatherCode}}" aria-label="{{weather}}"></i></div>\
 		</div>\
 		<div class="ngw-col">\
-		<div class="ngw-temp"><span ng-bind="temp || \'-\'"></span>&nbsp;<span>°C</span></div>\
+		<div class="ngw-temp"><span ng-bind="temp || \'-\'"></span>&nbsp;<span ng-bind="unit"></span></div>\
 		<div class="ngw-location">\
 		<i class="glyphicon glyphicon-pushpin" aria-label="Location"></i><span ng-bind="city"></span>\
 		</div>\
@@ -79,7 +85,6 @@ angular.module("ngWeather", [])
 		</div>\
 		<div class="ngw-col" ng-if="isError">\
 		<span ng-bind="errorMessage"></span>\
-		<span class="glyphicon glyphicon-refresh" ng-click="retry()"></span>\
 		</div>\
 		<div class="ngw-clearfix">\
 		</div>\
