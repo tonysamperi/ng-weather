@@ -10,6 +10,14 @@
 	padding: 10px;
 	clear: both;
 }
+.ngw-reload{
+	float: right;
+	cursor: pointer;
+}
+.ngw-reload:hover{
+	box-shadow: 5px 5px 5px 0px #e2e2e2;
+	font-size: 18px;
+}
 .ngw-col{
 	float: left;
 }
