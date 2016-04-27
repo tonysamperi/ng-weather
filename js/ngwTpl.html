@@ -1,0 +1,20 @@
+<div class="ngw-container ngw-row {{weather}}" ngw-spinner="isLoading">
+	<div ng-if="!isError">
+		<div class="ngw-col">
+			<div class="ngw-icon"><i class="owf owf-{{weatherCode}}" aria-label="{{weather}}"></i></div>
+		</div>
+		<div class="ngw-col">
+			<div class="ngw-temp"><span ng-bind="temp || '-'"></span>&nbsp;<span ng-bind="unit"></span></div>
+			<div class="ngw-location">
+				<i class="glyphicon glyphicon-pushpin" aria-label="Location"></i><span ng-bind="city"></span>
+			</div>
+			<span class="updatedAt" ng-bind="updatedAt"></span>
+		</div>
+	</div>
+	<div class="ngw-col" ng-if="isError">
+		<span ng-bind="errorMessage"></span>
+	</div>
+	<span class="glyphicon glyphicon-refresh ngw-reload" ng-click="reload()"></span>
+	<div class="ngw-clearfix">
+	</div>
+</div>

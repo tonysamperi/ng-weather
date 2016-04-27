@@ -9,19 +9,62 @@
 	box-shadow: 5px 10px 30px 0px #e2e2e2;
 	padding: 10px;
 	clear: both;
+	position: relative;
 }
-.ngw-reload{
+.ngw-buttons{
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}
+.ngw-settings{
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	height: 100%;
+	border-radius: 10px;
+}
+.ngw-settings-opacity{
+	position: absolute;
+	background: #000;
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	border-radius: 10px;
+}
+.ngw-settings-content {
+	text-align: center;
+	position: absolute;
+	z-index: 10;
+	width: 100%;
+	max-height: 100%;
+}
+.ngw-settings-content button[type="submit"]{
+	background-color: #fce528;
+	padding: 5px 5px;
+	margin-top: 5px;
+}
+.ngw-settings-content input[type="text"]{
+	background: #FFF;
+	color: #000;
+	opacity: 1;
+	text-align: center;
+}
+.ngw-reload, .ngw-wrench{
 	float: right;
 	cursor: pointer;
+	margin-right: 5px;
 }
-.ngw-reload:hover{
-	box-shadow: 5px 5px 5px 0px #e2e2e2;
+.ngw-icons:hover > *{
+	line-height: 18px;
+}
+.ngw-reload:hover, .ngw-wrench:hover{
 	font-size: 18px;
 }
 .ngw-col{
 	float: left;
 }
-.ngw-container.rain{
+.ngw-container.Rain{
 	background: url("../img/rain.jpg");
 	background-size: 100%;
 	color: #FFF;
@@ -29,6 +72,7 @@
 .ngw-container.Clear, .ngw-container.Sun{
 	background-image: url("../img/sun.jpg");
 	background-size: 100%;
+	background-position: center;
 	color: #FFF;
 }
 .ngw-container.Clouds{
@@ -36,9 +80,23 @@
 	background-size: 100%;
 	color: #FFF;
 }
+.ngw-container.Haze{
+	background: url("../img/haze.jpg");
+	background-size: 100%;
+	color: #000;
+	background-position: center;
+}
+.ngw-container.Haze .ngw-buttons{
+	color: #FFF;
+}
+.ngw-container.Mist{
+	background: url("../img/mist.jpg");
+	background-size: 100%;
+	color: #FFF;
+}
 .ngw-container:before {
-    display: table;
-    content: " ";
+	display: table;
+	content: " ";
 }
 .ngw-spinner{
 	position: absolute;
@@ -67,6 +125,14 @@
 	font-size: 30px;
 	font-weight: bold;
 }
+.ngw-location {
+	text-align: right;
+}
 .ngw-location > span {
 	font-size: 15px;
+}
+.ngw-updatedAt{
+	text-transform: uppercase;
+	text-align: right;
+	font-size: 10px;
 }
