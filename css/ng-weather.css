@@ -10,6 +10,7 @@
 	padding: 10px;
 	clear: both;
 	position: relative;
+	min-height: 100px;
 }
 .ngw-buttons{
 	position: absolute;
