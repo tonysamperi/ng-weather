@@ -66,23 +66,23 @@
 	float: left;
 }
 .ngw-container.Rain{
-	background: url("../img/rain.jpg");
+	background: url("../images/rain.jpg");
 	background-size: 100%;
 	color: #FFF;
 }
 .ngw-container.Clear, .ngw-container.Sun{
-	background-image: url("../img/sun.jpg");
+	background-image: url("../images/sun.jpg");
 	background-size: 100%;
 	background-position: center;
 	color: #FFF;
 }
 .ngw-container.Clouds{
-	background: url("../img/clouds.jpg");
+	background: url("../images/clouds.jpg");
 	background-size: 100%;
 	color: #FFF;
 }
 .ngw-container.Haze{
-	background: url("../img/haze.jpg");
+	background: url("../images/haze.jpg");
 	background-size: 100%;
 	color: #000;
 	background-position: center;
@@ -91,7 +91,7 @@
 	color: #FFF;
 }
 .ngw-container.Mist{
-	background: url("../img/mist.jpg");
+	background: url("../images/mist.jpg");
 	background-size: 100%;
 	color: #FFF;
 }
@@ -109,7 +109,7 @@
 	height: 100%;
 	opacity: 0.5;
 }
-.ngw-spinner > img {
+.ngw-spinner > images {
 	top: 50%;
 	left: 50%;
 	margin: -16px;

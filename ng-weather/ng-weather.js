@@ -5,7 +5,7 @@ angular.module("ngWeather", [])
                 scope: false,
                 link: function (scope, element, attrs) {
                     var loadingLayer = angular.element('<div class="ngw-spinner">'
-                            + '<img src="./img/ajax-loader.gif" />'
+                            + '<img src="./ng-weather/images/ajax-loader.gif" />'
                             + '</div>');
                     element.append(loadingLayer).addClass("ngw-spinner-outer");
                     scope.$watch(attrs.ngwSpinner, function (value) {
@@ -95,13 +95,14 @@ angular.module("ngWeather", [])
                             $scope.showSettings = true;
                         };
 
-                        $scope.setLocation = function (city) {
-                            $scope.reload(city);
+                        $scope.setLocation = function () {
+                            $scope.reload($scope.newCity);
+                            $scope.newCity = "";
                             $scope.showSettings = false;
                         };
 
                         $scope.reload();
                     }],
-                templateUrl: "./ngwTpl.html"
+                templateUrl: "./ng-weather/template/template1.html"
             };
         });
