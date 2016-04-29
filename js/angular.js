@@ -1,5 +1,6 @@
-﻿ * @license AngularJS v1.2.29
+﻿/* * @license AngularJS v1.2.29
  * (c) 2010-2014 Google, Inc. http://angularjs.org
+ */
 (function(window, document, undefined) {'use strict';
 
 /**
