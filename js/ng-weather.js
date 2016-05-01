@@ -37,8 +37,7 @@ angular.module("ngWeather", [])
 
 				console.log("%c %s", "color:orange; background:blue; font-size: 16pt", "LOCALE");
 				console.debug($locale)
-				var protocol = window.location.protocol==="https:"? "https":"http";
-				var apiUrl = protocol + "://api.openweathermap.org/data/2.5/weather";
+				var apiUrl = "http://api.openweathermap.org/data/2.5/weather";
 				var localeId = $locale.id || "en";
 				var lang = "en";
 				var units = "imperial";
