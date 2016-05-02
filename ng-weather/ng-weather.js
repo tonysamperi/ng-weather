@@ -1,16 +1,4 @@
 angular.module("ngWeather", [])
-    .directive("ngwSpinner", function () {
-        return {
-            restrict: 'A',
-            scope: false,
-            link: function (scope, element, attrs) {
-                var loadingLayer = angular.element('<div class="ngw-spinner" ng-show="isLoading">'
-                    + '<img src="./ng-weather/images/ajax-loader.gif" />'
-                    + '</div>');
-                element.append(loadingLayer).addClass("ngw-spinner-outer");
-            }
-        };
-    })
     .directive("ngWeather", function () {
         return {
             restrict: "E",
