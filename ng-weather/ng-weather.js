@@ -19,7 +19,8 @@ angular.module("ngWeather", [])
                 restrict: "E",
                 replace: true,
                 scope: {
-                    city: '@'
+                    city: '@?'
+                    , cityId: '@?'
                     , appId: '@'
                     , locale: '@'
                 },
@@ -57,13 +58,23 @@ angular.module("ngWeather", [])
                                 var params = "mode=json&units=" + units + "&callback=JSON_CALLBACK";
                                 $scope.updatedAtText = dictionary[lang]["updatedAtText"];
 
+                                $scope.getTemperatureByCityId = function (cityId) {
+                                    var request = {
+                                        method: "JSONP",
+                                        url: apiUrl + "?" + params + "&id=" + cityId + '&appid=' + $scope.appId
+                                    };
+                                    getTemperature(request);
+                                };
 
-                                $scope.getTemperature = function (city) {
+                                $scope.getTemperatureByCityName = function (city) {
                                     var request = {
                                         method: "JSONP",
                                         url: apiUrl + "?" + params + "&q=" + city + '&appid=' + $scope.appId
                                     };
+                                    getTemperature(request);
+                                };
 
+                                function getTemperature(request) {
                                     $scope.isError = false;
                                     $scope.isLoading = true;
                                     $http(request).then(function (response) {
@@ -81,7 +92,7 @@ angular.module("ngWeather", [])
                                     })['finally'](function () {
                                         $scope.isLoading = false;
                                     });
-                                };
+                                }
 
                                 function onError(dictionaryKey) {
                                     $scope.isError = true;
@@ -89,12 +100,16 @@ angular.module("ngWeather", [])
                                 }
 
                                 $scope.reload = function (city) {
-                                    if (!city && !$scope.city) {
+                                    if (!city && !$scope.city && !$scope.cityId) {
                                         onError("configerror");
                                         return;
                                     }
-                                    $scope.city = city || $scope.city;
-                                    $scope.getTemperature($scope.city);
+                                    if (!!$scope.cityId) {
+                                        $scope.getTemperatureByCityId($scope.cityId);
+                                    } else {
+                                        $scope.city = city || $scope.city;
+                                        $scope.getTemperatureByCityName($scope.city);
+                                    }
                                 };
 
                                 $scope.openSettings = function () {
