@@ -1,19 +1,4 @@
 angular.module("ngWeather", [])
-    .directive("ngwSpinner", function () {
-        return {
-            restrict: 'A',
-            scope: false,
-            link: function (scope, element, attrs) {
-                var loadingLayer = angular.element('<div class="ngw-spinner">'
-                    + '<img src="./ng-weather/images/ajax-loader.gif" />'
-                    + '</div>');
-                element.append(loadingLayer).addClass("ngw-spinner-outer");
-                scope.$watch(attrs.ngwSpinner, function (value) {
-                    loadingLayer.toggleClass('ng-hide', !value);
-                });
-            }
-        };
-    })
     .directive("ngWeather", function () {
         return {
             restrict: "E",
@@ -29,6 +14,7 @@ angular.module("ngWeather", [])
                     var dictionary = {
                         it: {
                             srverror: "Non sono riuscito a recuperare i dati.",
+                            notFound: "Città non trovata.",
                             configerror: "Ci sono alcuni errori nella configurazione!",
                             updatedAtText: "Ultimo aggiornamento",
                             updatedAtDate: "Oggi alle ",
@@ -36,6 +22,7 @@ angular.module("ngWeather", [])
                         },
                         en: {
                             srverror: "Data can't be retrieved.",
+                            notFound: "City not found.",
                             configerror: "There are some errors in your config!",
                             updatedAtText: "Last update",
                             updatedAtDate: "Today at ",
@@ -74,18 +61,18 @@ angular.module("ngWeather", [])
                     $scope.updatedAtText = dictionary[lang]["updatedAtText"];
 
                     $scope.getTemperatureByCityId = function (cityId) {
-                        var params = "mode=json&units=" + $scope.unit["key"] + "&callback=JSON_CALLBACK";
+                        var params = "mode=json&units=" + $scope.unit["key"];
                         var request = {
-                            method: "JSONP",
+                            method: "GET",
                             url: apiUrl + "?" + params + "&id=" + cityId + '&appid=' + $scope.appId
                         };
                         getTemperature(request);
                     };
 
                     $scope.getTemperatureByCityName = function (city) {
-                        var params = "mode=json&units=" + $scope.unit["key"] + "&callback=JSON_CALLBACK";
+                        var params = "mode=json&units=" + $scope.unit["key"];
                         var request = {
-                            method: "JSONP",
+                            method: "GET",
                             url: apiUrl + "?" + params + "&q=" + city + '&appid=' + $scope.appId
                         };
                         getTemperature(request);
@@ -97,6 +84,11 @@ angular.module("ngWeather", [])
                         $http(request).then(function (response) {
                             if (!response || !response.data) {
                                 onError("srverror");
+                                return false;
+                            }
+                            if(response.data.cod === "404"){
+                                onError("notFound");
+                                return false;
                             }
                             var data = response.data;
                             $scope.city = data.name || $scope.city;
@@ -113,7 +105,7 @@ angular.module("ngWeather", [])
 
                     function onError(dictionaryKey) {
                         $scope.isError = true;
-                        return dictionary[lang][dictionaryKey];
+                        $scope.errorMessage = dictionary[lang][dictionaryKey];
                     }
 
                     $scope.reload = function (city) {

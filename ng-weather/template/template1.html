@@ -1,4 +1,4 @@
-<div class="ngw-container ngw-row {{weather}}" ngw-spinner="isLoading">
+<div class="ngw-container ngw-spinner-outer ngw-row {{weather}}" ng-class="{'Error': isError}">
     <div ng-if="!isError">
         <div class="ngw-col">
             <div class="ngw-icon"><i class="owf owf-{{weatherCode}}" title="{{weather}}"></i></div>
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-    <div class="ngw-col" ng-if="isError">
+    <div class="ngw-messagesbox" ng-if="isError">
         <span ng-bind="errorMessage"></span>
     </div>
     <div class="ngw-buttons" ng-hide="showSettings">
@@ -39,5 +39,8 @@
                 <button id="ngw-submit" type="submit" class="ng-hide"></button> <!--  ng-disabled="!newCity"-->
             </form>
         </div>
+    </div>
+    <div class="ngw-spinner" ng-show="isLoading">
+        <img src="./ng-weather/images/ajax-loader.gif" />
     </div>
 </div>

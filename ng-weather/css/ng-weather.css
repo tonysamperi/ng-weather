@@ -12,6 +12,10 @@
     position: relative;
     min-height: 100px;
 }
+.ngw-messagesbox{
+    float: left;
+    width: 100%;
+}
 .ngw-buttons{
     position: absolute;
     bottom: 15px;
@@ -95,6 +99,12 @@
 }
 .ngw-col{
     float: left;
+}
+.ngw-container.Error{
+    background: url("../images/warning.jpg");
+    background-size: 100%;
+    color: #FFF;
+    background-position: center;
 }
 .ngw-container.Rain{
     background: url("../images/rain.jpg");
