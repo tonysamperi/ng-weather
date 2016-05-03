@@ -121,10 +121,6 @@ angular.module("ngWeather", [])
                         }
                     };
 
-                    $scope.openSettings = function () {
-                        $scope.showSettings = true;
-                    };
-
                     $scope.setLocation = function () {
                         $scope.reload($scope.newCity);
                         $scope.newCity = "";
