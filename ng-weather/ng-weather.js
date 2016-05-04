@@ -1,8 +1,8 @@
 angular.module("ngWeather", [])
     .factory("ngwService", function () {
         var ngwSrv = {
+			lang: "en",
             dictionary: {
-                lang: "en",
                 it: {
                     srverror: "Non sono riuscito a recuperare i dati.",
                     notFound: "Città non trovata.",
