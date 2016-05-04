@@ -1,4 +1,42 @@
 angular.module("ngWeather", [])
+    .factory("ngwService", function () {
+        var ngwSrv = {
+            dictionary: {
+                lang: "en",
+                it: {
+                    srverror: "Non sono riuscito a recuperare i dati.",
+                    notFound: "Città non trovata.",
+                    configerror: "Ci sono alcuni errori nella configurazione!",
+                    updatedAtText: "Ultimo aggiornamento",
+                    updatedAtDate: "Oggi alle ",
+                    newLocation: "Inserire nuova località",
+                    technical: "Errore tecnico"
+                },
+                en: {
+                    srverror: "Data can't be retrieved.",
+                    notFound: "City not found.",
+                    configerror: "There are some errors in your config!",
+                    updatedAtText: "Last update",
+                    updatedAtDate: "Today at ",
+                    newLocation: "Enter new location",
+                    technical: "Technical error"
+                }
+            },
+            getLabel: function(key){
+                return this.dictionary[this.lang][key] || this.dictionary[this.lang]["technical"];
+            }
+        };
+
+        return ngwSrv;
+    })
+    .directive("ngwSettings", function () {
+        return {
+            restrict: "E",
+            replace: true,
+            scope: false,
+            templateUrl: "./ng-weather/template/settings.html"
+        };
+    })
     .directive("ngWeather", function () {
         return {
             restrict: "E",
@@ -8,77 +46,50 @@ angular.module("ngWeather", [])
                 , cityId: '@?'
                 , appId: '@'
                 , locale: '@'
+                , mode: '@?'
             },
-            controller: ["$http", "$scope", "$locale", '$filter'
-                , function ($http, $scope, $locale, $filter) {
-                    var dictionary = {
-                        it: {
-                            srverror: "Non sono riuscito a recuperare i dati.",
-                            notFound: "Città non trovata.",
-                            configerror: "Ci sono alcuni errori nella configurazione!",
-                            updatedAtText: "Ultimo aggiornamento",
-                            updatedAtDate: "Oggi alle ",
-                            newLocation: "Inserire nuova località"
-                        },
-                        en: {
-                            srverror: "Data can't be retrieved.",
-                            notFound: "City not found.",
-                            configerror: "There are some errors in your config!",
-                            updatedAtText: "Last update",
-                            updatedAtDate: "Today at ",
-                            newLocation: "Enter new location"
-                        }
-                    };
+            controller: ["$http", "$scope", "$locale", '$filter', 'ngwService'
+                , function ($http, $scope, $locale, $filter, ngwService) {
 
                     var localeId = $locale.id || "en";
                     if (!!$scope.locale) {
                         localeId = $scope.locale;
                     }
-                    var lang = "en";
                     $scope.units = [
-                        {
-                            key: "imperial",
-                            symbol: "°F"
-                        },
-                        {
-                            key: "metric",
-                            symbol: "°C"
-                        },
-                        {
-                            key: "absolute",
-                            symbol: "°K"
-                        }];
+                        {key: "imperial",symbol: "°F"},
+                        {key: "metric",symbol: "°C"},
+                        {key: "absolute",symbol: "K"}
+                    ];
                     $scope.unit = $scope.units[0];
                     if (localeId.indexOf("it") > -1) {
-                        lang = "it";
+                        ngwService.lang = "it";
                         $scope.unit = $scope.units[1];
                     }
-                    $scope.newLocationLabel = dictionary[lang]["newLocation"];
+                    $scope.newLocationLabel = ngwService.getLabel("newLocation");
 
-                    $scope.updatedAtText = dictionary[lang]["updatedAtText"];
+                    $scope.updatedAtText = ngwService.getLabel("updatedAtText");
 
-                    $scope.getTemperatureByCityId = function (cityId) {
-                        var request = createRequest();
-                        request.url+= "&id=" + cityId;
-                        getTemperature(request);
+                    var commonFunctions = {
+                        getTemperatureByCityId: function (cityId) {
+                            var request = commonFunctions.createRequest();
+                            request.url += "&id=" + cityId;
+                            getTemperature(request);
+                        },
+                        getTemperatureByCityName: function (city) {
+                            var request = commonFunctions.createRequest();
+                            request.url += "&q=" + city;
+                            getTemperature(request);
+                        },
+                        createRequest: function () {
+                            var apiUrl = "http://api.openweathermap.org/data/2.5/weather";
+                            return {
+                                method: "GET",
+                                url: apiUrl + "?units=" + $scope.unit["key"] + '&appid=' + $scope.appId
+                            };
+                        }
                     };
-
-                    $scope.getTemperatureByCityName = function (city) {
-                        var request = createRequest();
-                        request.url+= "&q=" + city;
-                        getTemperature(request);
-                    };
-
-                    function createRequest(){
-                        var apiUrl = "http://api.openweathermap.org/data/2.5/weather";
-                        return {
-                            method: "GET",
-                            url: apiUrl + "?units=" + $scope.unit["key"] + '&appid=' + $scope.appId
-                        };
-                    }
 
                     function getTemperature(request) {
-
                         $scope.isError = false;
                         $scope.isLoading = true;
                         $http(request).then(function (response) {
@@ -86,13 +97,14 @@ angular.module("ngWeather", [])
                                 throwError("srverror");
                                 return false;
                             }
-                            if(response.data.cod === "404"){
+                            if (response.data.cod === "404") {
                                 throwError("notFound");
                                 return false;
                             }
                             var data = response.data;
                             $scope.city = data.name || $scope.city;
-                            $scope.updatedAtDate = dictionary[lang]["updatedAtDate"] + $filter("date")(new Date(), "HH:mm");
+                            $scope.cityId = data.id || "";
+                            $scope.updatedAtDate = ngwService.getLabel("updatedAtDate") + $filter("date")(new Date(), "HH:mm");
                             $scope.weather = data.weather[0].main;
                             $scope.weatherCode = data.weather[0].id;
                             $scope.temperature = parseInt(data.main.temp);
@@ -105,7 +117,7 @@ angular.module("ngWeather", [])
 
                     function throwError(dictionaryKey) {
                         $scope.isError = true;
-                        $scope.errorMessage = dictionary[lang][dictionaryKey];
+                        $scope.errorMessage = ngwService.getLabel(dictionaryKey);
                     }
 
                     $scope.reload = function (city) {
@@ -113,20 +125,25 @@ angular.module("ngWeather", [])
                             throwError("configerror");
                             return;
                         }
-                        if(!!city){
+                        if (!!city) {
                             $scope.city = city;
-                            return $scope.getTemperatureByCityName($scope.city);
+                            return commonFunctions.getTemperatureByCityName($scope.city);
                         }
                         if (!!$scope.cityId) {
-                            return $scope.getTemperatureByCityId($scope.cityId);
+                            return commonFunctions.getTemperatureByCityId($scope.cityId);
                         }
-                        $scope.getTemperatureByCityName($scope.city);
+                        commonFunctions.getTemperatureByCityName($scope.city);
                     };
 
                     $scope.setLocation = function () {
                         $scope.reload($scope.newCity);
                         $scope.newCity = "";
                         $scope.showSettings = false;
+                    };
+
+                    $scope.openSettings = function () {
+                        $scope.showSettings = true;
+                        $scope.newCity = angular.copy($scope.city);
                     };
 
                     $scope.reload();

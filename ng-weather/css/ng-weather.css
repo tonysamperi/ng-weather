@@ -99,47 +99,28 @@
 .ngw-col{
     float: left;
 }
+.ngw-container{
+    color: #FFF;
+    background: url("../images/sprite.jpg");
+    background-position: 0 0;
+    background-size: 100%;
+}
 .ngw-container.Error{
-    background: url("../images/warning.jpg");
-    background-size: 100%;
     color: #FFF;
-    background-position: center;
+    background-position: 0 3770px;
 }
-.ngw-container.Rain{
-    background: url("../images/rain.jpg");
-    background-size: 100%;
-    color: #FFF;
-}
-.ngw-container.Clear, .ngw-container.Sun{
-    background-image: url("../images/sun.jpg");
-    background-size: 100%;
-    background-position: center;
-    color: #FFF;
-}
+.ngw-container.Rain{background-position: 0 1124px;}
+.ngw-container.Clear, .ngw-container.Sun{background-position: 0 1573px;}
 .ngw-container.Clear span, .ngw-container.Sun span,
 .ngw-container.Clouds span, .ngw-container.Mist span
 {
-    color: #FFF;
 }
-.ngw-container.Clouds{
-    background: url("../images/clouds.jpg");
-    background-size: 100%;
-    color: #FFF;
-}
+.ngw-container.Clouds{background-position: 0 1297px;}
 .ngw-container.Haze span{
     color: #000;
 }
-.ngw-container.Haze{
-    background: url("../images/haze.jpg");
-    background-size: 100%;
-    color: #000;
-    background-position: center;
-}
-.ngw-container.Mist{
-    background: url("../images/mist.jpg");
-    background-size: 100%;
-    color: #FFF;
-}
+.ngw-container.Haze{background-position: 0px 389px;}
+.ngw-container.Mist{background-position: 0 640px;}
 .ngw-container:before {
     display: table;
     content: " ";

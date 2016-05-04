@@ -22,25 +22,10 @@
         <span ng-bind="errorMessage"></span>
     </div>
     <div class="ngw-buttons" ng-hide="showSettings">
-        <span class="ngw-wrench" ng-click="showSettings = true"></span>
+        <span class="ngw-wrench" ng-click="openSettings()"></span>
         <span class="ngw-reload" ng-click="reload()"></span>
     </div>
     <div class="ngw-clearfix">
     </div>
-    <div class="ngw-settings" ng-show="showSettings">
-        <div class="ngw-settings-opacity"></div>
-        <div class="ngw-settings-content">
-            <span class="ngw-close" ng-click="showSettings=false"></span>
-            <form ng-submit="setLocation()">
-                <label for="newCity" ng-bind="newLocationLabel"></label>
-                <br />
-
-                <input id="newCity" class="input ngw-input" type="text" ng-model="newCity" autofocus="" />
-                <br />
-                <select class="ngw-select" ng-model="unit" ng-options="u as u.symbol for u in units" />
-                <label for="ngw-submit" class="ngw-confirm"></label>
-                <button id="ngw-submit" type="submit" class="ng-hide"></button> <!--  ng-disabled="!newCity"-->
-            </form>
-        </div>
-    </div>
+    <ngw-settings></ngw-settings>
 </div>
