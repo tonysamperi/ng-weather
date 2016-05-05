@@ -103,6 +103,7 @@ angular.module("ngWeather", [])
                             }
                             var data = response.data;
                             $scope.city = data.name || $scope.city;
+                            $scope.newCity = angular.copy($scope.city);
                             $scope.cityId = data.id || "";
                             $scope.updatedAtDate = ngwService.getLabel("updatedAtDate") + $filter("date")(new Date(), "HH:mm");
                             $scope.weather = data.weather[0].main;
