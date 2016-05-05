@@ -5,12 +5,11 @@
         <form ng-submit="setLocation()">
             <label for="newCity" ng-bind="newLocationLabel"></label>
             <br />
-
-            <input id="newCity" class="input ngw-input" type="text" ng-model="newCity" autofocus="" />
+            <input id="newCity" class="input ngw-input" type="text" ng-model="newCity" autofocus="" placeholder="Es. New York" />
             <br />
             <select class="ngw-select" ng-model="unit" ng-options="u as u.symbol for u in units" />
             <label for="ngw-submit" class="ngw-confirm"></label>
-            <button id="ngw-submit" type="submit" class="ng-hide"></button> <!--  ng-disabled="!newCity"-->
+            <button id="ngw-submit" type="submit" class="ng-hide"></button>
         </form>
     </div>
 </div>
