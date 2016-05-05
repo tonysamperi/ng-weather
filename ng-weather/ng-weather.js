@@ -48,8 +48,8 @@ angular.module("ngWeather", [])
                 , locale: '@'
                 , mode: '@?'
             },
-            controller: ["$http", "$scope", "$locale", '$filter', 'ngwService'
-                , function ($http, $scope, $locale, $filter, ngwService) {
+            controller: ["$http", "$scope", "$locale", "$filter", "ngwService", "$timeout",
+                function ($http, $scope, $locale, $filter, ngwService, $timeout) {
 
                     var localeId = $locale.id || "en";
                     if (!!$scope.locale) {
@@ -144,7 +144,9 @@ angular.module("ngWeather", [])
 
                     $scope.openSettings = function () {
                         $scope.showSettings = true;
-                        $scope.newCity = angular.copy($scope.city);
+						$timeout(function(){
+							angular.element("#newCity").focus();
+						});
                     };
 
                     $scope.reload();
