@@ -111,8 +111,7 @@
 .ngw-container.Rain span,
 .ngw-container.Clear span, .ngw-container.Sun span,
 .ngw-container.Clouds span, .ngw-container.Mist span,
-.ngw-container.Haze span, .ngw-container.Snow span,
-.ngw-container .Thunderstorm span
+.ngw-container.Haze span, .ngw-container.Snow span
 {
     color: #FFF;
 }
@@ -123,8 +122,6 @@
 .ngw-container.Haze{background-image: url("../images/haze.jpg");background-position:center;}
 .ngw-container.Mist{background-image: url("../images/mist.jpg");}
 .ngw-container.Snow{background-image: url("../images/snow.jpg");}
-.ngw-container.Thunderstorm{background-image: url("../images/thunderstorm.jpg");background-position: center bottom;}
-.ngw-container.Hurricane{background-image: url("../images/hurricane.jpg");background-position: center bottom;}
 
 .ngw-container:before {
     display: table;
