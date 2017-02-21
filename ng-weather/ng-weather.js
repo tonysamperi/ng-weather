@@ -1,3 +1,18 @@
+(function () {
+	 var angularWarning = false;
+	var angularValid = function() {
+		if (!angular || !angular.version || angular.version.major !== 1) {
+			console.error("Invalid Angular version found. You may have other plugins loading Angular");
+			return false;
+		}
+		if (angular.version.minor !== 2 && angualar.version.dot !== 29) {
+			angularWarning = "A different version of the AngularJS library was loaded. You may experience issues with ng-weather";
+			return true;
+		}
+	};
+    if (!angularValid()) {
+        return false;
+    }
 angular.module("ngWeather", [])
     .factory("ngwService", function () {
         var ngwSrv = {
@@ -150,7 +165,14 @@ angular.module("ngWeather", [])
                     };
 
                     $scope.reload();
+					
+					if(!!angularWarning){
+						$scope.showWarning = true;
+						$scope.warningMessage = angularWarning;
+					}
                 }],
             templateUrl: "./ng-weather/template/template1.html"
         };
     });
+	
+})();
