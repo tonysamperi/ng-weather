@@ -6,9 +6,13 @@
 			return false;
 		}
 		if (angular.version.minor !== 2 && angular.version.dot !== 29) {
-			angularWarning = "A different version of the AngularJS library was loaded. You may experience issues with ng-weather";
-			return true;
-		}
+            angularWarning = "A different version of the AngularJs library was loaded. You may experience issues with ng-weather";
+            return true;
+        }
+        else{
+            console.info("Angular 1.2.29 found. Compatibility granted.");
+            return true;
+        }
 	};
     if (!angularValid()) {
         return false;
