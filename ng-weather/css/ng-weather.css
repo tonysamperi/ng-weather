@@ -47,9 +47,20 @@
 }
 .ngw-warning-content{
 	z-index: 11;
+	padding: 5px 20px;
+}
+.ngw-warning-content p{
+	font-size: 16px;
+    vertical-align: middle;
+    top: 50%;
+    padding: 0;
+    position: relative;
+    margin: -2.2em 0 0 0;
+    line-height: 1.5em;
 }
 .ngw-warning-content .ngw-warning-close{
 	float: right;
+	cursor: pointer;
 }
 .ngw-settings-content input[type="text"],
 .ngw-settings-content select{
