@@ -5,10 +5,14 @@
 			console.error("Invalid Angular version found. You may have other plugins loading Angular");
 			return false;
 		}
-		if (angular.version.minor !== 2 && angualar.version.dot !== 29) {
-			angularWarning = "A different version of the AngularJS library was loaded. You may experience issues with ng-weather";
-			return true;
-		}
+		if (angular.version.minor !== 2 && angular.version.dot !== 29) {
+            angularWarning = "A different version of the AngularJs library was loaded. You may experience issues with ng-weather";
+            return true;
+        }
+        else{
+            console.info("Angular 1.2.29 found. Compatibility granted.");
+            return true;
+        }
 	};
     if (!angularValid()) {
         return false;
@@ -50,6 +54,14 @@ angular.module("ngWeather", [])
             replace: true,
             scope: false,
             templateUrl: "./ng-weather/template/settings.html"
+        };
+    })
+	.directive("ngwWarning", function () {
+        return {
+            restrict: "E",
+            replace: true,
+            scope: false,
+            templateUrl: "./ng-weather/template/warning.html"
         };
     })
     .directive("ngWeather", function () {
