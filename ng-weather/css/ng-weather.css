@@ -62,13 +62,21 @@
 	float: right;
 	cursor: pointer;
 }
-.ngw-settings-content input[type="text"],
-.ngw-settings-content select{
+.ngw-settings-content form > input[type="text"], 
+.ngw-settings-content form > select.ngw-select{
     background: #FFF;
     color: #000;
     opacity: 1;
     text-align: center;
-    margin-bottom: 10px;
+    margin-bottom: 5px;
+    width: auto;
+    padding: 5px;
+    border: none;
+    border-radius: 3px;
+    height: 30px;
+    line-height: 30px;
+    font-size: 16px;
+    margin-top: 10px;
 }
 .ngw-reload, .ngw-wrench{
     float: right;
